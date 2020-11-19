@@ -1,6 +1,6 @@
 ﻿<div class="container body-content">
 
-    <h1>@ViewBag.title</h1>
+
 
 
 
@@ -11,7 +11,8 @@
             @foreach (var column in ViewBag.columns)
             {
                 <span>
-                    <input type="radio" name="searchType" id="@column.Key" value="@column.Key" checked="@column.Key == 'all'" />
+                    <input type="radio" name="searchType" id="@column.Key" value="@column.Key" checked="@( (ViewBag.searchtype == null) ? column.Key=="all" : column.Key==ViewBag.searchtype )" />
+
                     <label for="@column.Key">@column.Value</label>
                 </span>
             }
@@ -20,7 +21,7 @@
 
         <p>
             <label for="searchTerm">Keyword:</label>
-            <input type="text" name="searchTerm" id="searchTerm" />
+            <input type="text" name="searchTerm" id="searchTerm" value="@ViewBag.searchTerm" />
         </p>
 
         <input type="submit" value="Search" />
@@ -31,13 +32,15 @@
     <!--If the jobs are null the page only shows for the form. else it will show the list of jobs of categiries right under the form-->
     @if (ViewBag.jobs != null)
     {
-    
-
-            @foreach (var job in ViewBag.jobs)
-            {
+        <h3>@ViewBag.title</h3>
 
 
+        @foreach (var job in ViewBag.jobs)
+        {
 
+
+            <table class="job-listing">
+                <!--Job-listing class provided in instruvtions-->
 
                 <tr>
                     <td>
@@ -51,9 +54,10 @@
                     </td>
 
                 </tr>
-            }
-
+            </table>
         }
-          
 
+    }
+
+   
 </div>
