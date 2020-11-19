@@ -183,3 +183,6 @@ label {
 .centered {
     text-align: center;
 }
+table.job-listing tr:hover {
+    background-color: #ca7d7d;
+}
